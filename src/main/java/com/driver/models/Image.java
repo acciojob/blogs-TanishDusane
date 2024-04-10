@@ -1,3 +1,4 @@
+
 package com.driver.models;
 
 import javax.persistence.*;
@@ -11,17 +12,27 @@ public class Image {
     private Integer id;
 
     private String description;
+
     private String dimensions;
+
+    @ManyToOne
+    @JoinColumn
+    private Blog blog;
 
     public Image() {
     }
 
-    public Blog getBlog() {
-        return blog;
+    public Image(String description, String dimensions) {
+        this.description = description;
+        this.dimensions = dimensions;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -40,15 +51,11 @@ public class Image {
         this.dimensions = dimensions;
     }
 
-    public Integer getId() {
-        return id;
+    public Blog getBlog() {
+        return blog;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
-
-    @JoinColumn
-    @ManyToOne
-    private Blog blog;
 }

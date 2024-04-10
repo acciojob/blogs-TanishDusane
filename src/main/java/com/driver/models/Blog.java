@@ -1,3 +1,5 @@
+
+
 package com.driver.models;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,28 +17,26 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public Blog() {
-    }
-
-    public Blog(Integer id, String title, String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
-
     private String title;
     private String content;
-    private Integer blogId;
-
     @CreationTimestamp
     private Date pubDate;
 
-    public List<Image> getImageList() {
-        return imageList;
+    @ManyToOne
+    @JoinColumn
+    private User user;
+
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
+    private List<Image> imageList = new ArrayList<>();
+
+    public Blog() {
     }
 
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
+    public Blog(String title, String content, Date pubDate, User user) {
+        this.title = title;
+        this.content = content;
+        this.pubDate = pubDate;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -63,14 +63,6 @@ public class Blog {
         this.content = content;
     }
 
-    public Integer getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
-    }
-
     public Date getPubDate() {
         return pubDate;
     }
@@ -87,11 +79,11 @@ public class Blog {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Image> imageList = new ArrayList<>();
+    public List<Image> getImageList() {
+        return imageList;
+    }
 
-
-    @JoinColumn
-    @ManyToOne
-    private User user;
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
 }
