@@ -12,15 +12,13 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public User createUser(String username, String password){
         User user = new User(username,password);
-        user.setUsername(username);
-        user.setPassword(password);
-         userRepository.save(user);
-
-         return user;
+//        user.setUsername(username);
+//        user.setPassword(password);
+         return userRepository.save(user);
     }
 
     public void deleteUser(int userId){
