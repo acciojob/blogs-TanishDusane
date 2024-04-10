@@ -1,6 +1,5 @@
 package com.driver.services;
 
-import com.driver.models.Blog;
 import com.driver.models.User;
 import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ public class UserService {
 
     public User createUser(String username, String password){
         User user = new User(username,password);
-//        user.setUsername(username);
-//        user.setPassword(password);
          return userRepository.save(user);
     }
 

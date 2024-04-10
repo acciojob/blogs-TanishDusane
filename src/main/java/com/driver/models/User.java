@@ -66,6 +66,8 @@ public class User {
     public User(String password, String username) {
         this.password = password;
         this.username = username;
+        this.firstName = "test";
+        this.lastName = "test";
     }
 
     public List<Blog> getBlogList() {
